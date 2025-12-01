@@ -24,18 +24,23 @@ public class BlendShapeSearchTool : EditorWindow
         // === 目関連 ===
         new[] { "eye", "目", "め" },
         new[] { "eyelid", "瞼", "まぶた" },
-        new[] { "eyelash", "睫毛", "まつげ", "まつ毛" },
-        new[] { "iris", "pupil", "瞳", "ひとみ" },
+        new[] { "eyelash", "eyelashes", "睫毛", "まつげ", "まつ毛" },
+        new[] { "iris", "虹彩", "こうさい" },
+        new[] { "pupil", "瞳孔", "どうこう" },
         new[] { "blink", "まばたき", "瞬き", "目閉じ" },
-        new[] { "highlight", "ハイライト", "ハイライ" },
+        new[] { "catchlight", "highlight", "ハイライト", "ハイライ", "キャッチライト" },
         
         // === 目の形状 ===
         new[] { "tare", "たれ", "タレ", "垂れ" },
         new[] { "turi", "つり", "ツリ", "吊り" },
-        new[] { "zito", "じと", "ジト" },
+        new[] { "jito", "zito", "じと", "ジト" },
         new[] { "nagomi", "なごみ", "和み", "ナゴミ" },
         new[] { "wink", "ウィンク", "ウインク" },
         new[] { "sleepy", "眠", "ねむ" },
+        new[] { "doya", "ドヤ", "どや", "得意" },
+        new[] { "uruuru", "うるうる", "ウルウル", "潤み" },
+        new[] { "kirakira", "キラキラ", "きらきら" },
+        new[] { "yandere", "ヤンデレ", "やんでれ", "病み" },
         
         // === 口関連 ===
         new[] { "mouth", "mouse", "口", "くち" },
@@ -43,47 +48,125 @@ public class BlendShapeSearchTool : EditorWindow
         new[] { "tongue", "tang", "舌", "した", "べろ", "ベロ" },
         new[] { "tooth", "teeth", "歯", "は" },
         new[] { "yaeba", "八重歯", "やえば" },
+        new[] { "giza", "ギザ", "ぎざ", "ギザ歯" },
+        new[] { "drool", "よだれ", "ヨダレ", "涎" },
+        new[] { "pero", "ぺろ", "ペロ", "舌出" },
+        new[] { "puku", "ぷく", "プク", "膨", "ふくれ" },
+        new[] { "grin", "にやり", "ニヤリ", "にんまり" },
+        
+        // === 眉関連 ===
+        new[] { "brow", "eyebrow", "eyebrows", "眉", "まゆ", "眉毛" },
+        new[] { "maromayu", "まろ眉", "まろまゆ", "丸眉" },
+        new[] { "komaru", "困", "こまる", "困り眉" },
+        new[] { "annoying", "いらいら", "イライラ" },
+        new[] { "straight", "ストレート", "まっすぐ", "直線" },
+        new[] { "thick", "太", "ふと", "太い" },
+        new[] { "thin", "細", "ほそ", "細い" },
         
         // === 顔パーツ ===
-        new[] { "brow", "eyebrow", "眉", "まゆ", "眉毛" },
         new[] { "cheek", "頬", "ほほ", "ほっぺ" },
         new[] { "nose", "鼻", "はな" },
         new[] { "tear", "涙", "なみだ", "泪" },
         new[] { "forehead", "額", "おでこ", "ひたい" },
+        new[] { "ear", "耳", "みみ" },
+        new[] { "elf", "エルフ", "エルフ耳" },
+        new[] { "face", "facetype", "顔", "かお", "フェイス" },
+        new[] { "chin", "顎", "あご", "アゴ" },
+        new[] { "jawline", "顎ライン", "輪郭" },
+        new[] { "muzzle", "マズル", "口元" },
+        new[] { "head", "頭", "あたま" },
+        new[] { "neckline", "首", "くび", "ネックライン" },
+        
+        // === 顔の形状 ===
+        new[] { "chubby", "ぽっちゃり", "ふっくら" },
+        new[] { "maru", "丸", "まる" },
+        new[] { "sharp", "シャープ", "尖", "とが" },
+        new[] { "soft", "ソフト", "柔らか" },
+        new[] { "boyish", "ボーイッシュ", "男の子" },
+        new[] { "long", "長", "なが" },
+        new[] { "short", "短", "みじか" },
+        new[] { "fuku", "膨らみ", "ふくらみ" },
         
         // === 表情 ===
         new[] { "smile", "笑", "えみ", "にこ", "ニコ" },
         new[] { "happy", "joy", "喜", "よろこ", "嬉", "うれ" },
-        new[] { "angry", "怒", "おこ", "いか" },
+        new[] { "angry", "anger", "怒", "おこ", "いか" },
         new[] { "sad", "悲", "かな" },
         new[] { "cry", "泣", "なき", "ないて" },
-        new[] { "surprise", "odoroki", "驚", "おどろ", "びっくり" },
+        new[] { "surprise", "surprised", "odoroki", "驚", "おどろ", "びっくり" },
         new[] { "fear", "恐", "こわ", "怖" },
         
         // === 日本語表現 ===
         new[] { "nikori", "nikkori", "にこり", "にっこり", "ニコリ" },
         new[] { "niyari", "にやり", "ニヤリ", "にんまり" },
-        new[] { "pero", "ぺろ", "ペロ", "舌出" },
-        new[] { "puku", "ぷく", "プク", "膨" },
         new[] { "tere", "照", "てれ", "テレ" },
         new[] { "ahaha", "あはは", "アハハ" },
         new[] { "ehehe", "えへへ", "エヘヘ" },
         
+        // === その他効果 ===
+        new[] { "blush", "赤面", "照れ", "頬染め" },
+        new[] { "lineblush", "線照れ", "///", "斜線" },
+        new[] { "sweat", "汗", "あせ" },
+        new[] { "heart", "ハート", "はーと" },
+        new[] { "star", "スター", "星", "ほし" },
+        new[] { "white_eye", "白目", "しろめ" },
+        new[] { "blanched", "青ざめ", "蒼白" },
+        
+        // === 動物プリセット ===
+        new[] { "cat", "猫", "ねこ", "ネコ" },
+        new[] { "dog", "犬", "いぬ", "イヌ" },
+        new[] { "fox", "狐", "きつね", "キツネ" },
+        new[] { "rabbit", "うさぎ", "ウサギ", "兎" },
+        new[] { "tanuki", "たぬき", "タヌキ", "狸" },
+        new[] { "sloth", "ナマケモノ", "なまけもの" },
+        new[] { "goat", "山羊", "やぎ", "ヤギ" },
+        
         // === 位置 ===
         new[] { "upper", "上", "うえ" },
         new[] { "lower", "下", "した" },
-        new[] { "left", "左", "ひだり" },
-        new[] { "right", "右", "みぎ" },
+        new[] { "left", "左", "ひだり", "_l" },
+        new[] { "right", "右", "みぎ", "_r" },
+        new[] { "front", "前", "まえ" },
+        new[] { "back", "後", "うしろ", "奥" },
+        new[] { "center", "中央", "センター" },
+        new[] { "main", "メイン", "主" },
+        new[] { "sub", "サブ", "副" },
         
-        // === 形状 ===
+        // === 形状・サイズ ===
         new[] { "big", "大", "おお" },
         new[] { "small", "小", "ちい", "しょう" },
         new[] { "narrow", "細", "ほそ", "狭" },
         new[] { "wide", "広", "ひろ" },
         new[] { "open", "開", "あけ", "ひら" },
         new[] { "close", "閉", "とじ" },
-        new[] { "maru", "丸", "まる" },
-        new[] { "sharp", "尖", "とが" },
+        new[] { "squash", "つぶれ", "押し潰し" },
+        
+        // === 回転・変形 ===
+        new[] { "rotating", "回転", "かいてん" },
+        new[] { "inward", "内側", "うちがわ" },
+        new[] { "outward", "外側", "そとがわ" },
+        new[] { "sori", "反り", "そり" },
+        new[] { "yori", "寄り", "より" },
+        new[] { "morph", "モーフ", "変形" },
+        
+        // === 特殊効果 ===
+        new[] { "off", "オフ", "非表示", "消す" },
+        new[] { "double", "二重", "ふたえ", "ダブル" },
+        new[] { "preset", "プリセット" },
+        new[] { "point", "ポイント", "先端" },
+        new[] { "line", "ライン", "線" },
+        new[] { "shape", "シェイプ", "形状" },
+        
+        // === VRChat関連 ===
+        new[] { "vrc", "vrchat", "ブイアールチャット" },
+        new[] { "viseme", "ビゼム", "リップシンク" },
+        new[] { "v_aa", "あ", "ア" },
+        new[] { "v_ih", "い", "イ" },
+        new[] { "v_oh", "お", "オ" },
+        new[] { "v_ou", "う", "ウ" },
+        new[] { "v_e", "え", "エ" },
+        new[] { "lookingup", "上見", "見上げ" },
+        new[] { "lookingdown", "下見", "見下ろし" },
     };
 
     private static Dictionary<string, HashSet<string>> synonymMap;
@@ -91,50 +174,185 @@ public class BlendShapeSearchTool : EditorWindow
     // タグ表示用辞書（英語キー → 日本語表示）
     private static readonly Dictionary<string, string> tagDictionary = new Dictionary<string, string>
     {
+        // === 目関連 ===
         { "eye", "目" },
         { "eyelid", "瞼" },
         { "eyelash", "睫毛" },
-        { "iris", "瞳" },
-        { "pupil", "瞳" },
+        { "eyelashes", "睫毛" },
+        { "iris", "虹彩" },
+        { "pupil", "瞳孔" },
+        { "catchlight", "ハイライト" },
+        { "highlight", "ハイライト" },
+        { "blink", "まばたき" },
+        
+        // === 目の形状 ===
+        { "tare", "タレ目" },
+        { "turi", "ツリ目" },
+        { "jito", "ジト目" },
+        { "zito", "ジト目" },
+        { "nagomi", "なごみ" },
+        { "doya", "ドヤ顔" },
+        { "wink", "ウィンク" },
+        { "sleepy", "眠い" },
+        { "uruuru", "うるうる" },
+        { "kirakira", "キラキラ" },
+        { "yandere", "ヤンデレ" },
+        
+        // === 口関連 ===
         { "mouth", "口" },
         { "mouse", "口" },
-        { "tooth", "歯" },
-        { "teeth", "歯" },
+        { "lip", "唇" },
         { "tongue", "舌" },
         { "tang", "舌" },
+        { "tooth", "歯" },
+        { "teeth", "歯" },
+        { "yaeba", "八重歯" },
+        { "giza", "ギザ歯" },
+        { "drool", "よだれ" },
+        { "pero", "ペロ" },
+        { "puku", "ぷくー" },
+        { "grin", "ニヤリ" },
+        
+        // === 眉関連 ===
         { "brow", "眉" },
         { "eyebrow", "眉" },
+        { "eyebrows", "眉" },
+        { "maromayu", "まろ眉" },
+        { "komaru", "困り眉" },
+        { "annoying", "イライラ" },
+        { "straight", "ストレート" },
+        { "thick", "太い" },
+        { "thin", "細い" },
+        
+        // === 顔パーツ ===
         { "cheek", "頬" },
         { "nose", "鼻" },
-        { "lip", "唇" },
         { "tear", "涙" },
         { "forehead", "額" },
-        { "blink", "まばたき" },
+        { "ear", "耳" },
+        { "elf", "エルフ" },
+        { "face", "顔" },
+        { "facetype", "顔型" },
+        { "chin", "顎" },
+        { "jawline", "輪郭" },
+        { "muzzle", "マズル" },
+        { "head", "頭" },
+        { "neckline", "首" },
+        
+        // === 顔の形状 ===
+        { "chubby", "ぽっちゃり" },
+        { "maru", "丸" },
+        { "sharp", "シャープ" },
+        { "soft", "ソフト" },
+        { "boyish", "ボーイッシュ" },
+        { "long", "長い" },
+        { "short", "短い" },
+        { "fuku", "膨らみ" },
+        
+        // === 表情 ===
         { "smile", "笑顔" },
         { "happy", "喜び" },
         { "joy", "喜び" },
         { "angry", "怒り" },
+        { "anger", "怒り" },
         { "sad", "悲しみ" },
         { "cry", "泣き" },
         { "surprise", "驚き" },
+        { "surprised", "驚き" },
         { "odoroki", "驚き" },
-        { "wink", "ウィンク" },
-        { "sleepy", "眠い" },
-        { "tare", "タレ目" },
-        { "turi", "ツリ目" },
-        { "nagomi", "なごみ" },
-        { "zito", "ジト目" },
-        { "highlight", "ハイライト" },
-        { "yaeba", "八重歯" },
+        { "fear", "恐怖" },
+        
+        // === その他効果 ===
+        { "blush", "赤面" },
+        { "lineblush", "線照れ" },
+        { "sweat", "汗" },
+        { "heart", "ハート" },
+        { "star", "星" },
+        { "white_eye", "白目" },
+        { "blanched", "青ざめ" },
+        
+        // === 動物プリセット ===
+        { "cat", "猫" },
+        { "dog", "犬" },
+        { "fox", "狐" },
+        { "rabbit", "うさぎ" },
+        { "tanuki", "たぬき" },
+        { "sloth", "ナマケモノ" },
+        { "goat", "山羊" },
+        
+        // === 位置 ===
+        { "upper", "上" },
+        { "lower", "下" },
+        { "left", "左" },
+        { "right", "右" },
+        { "front", "前" },
+        { "back", "後" },
+        { "center", "中央" },
+        { "main", "メイン" },
+        { "sub", "サブ" },
+        
+        // === 形状・サイズ ===
+        { "big", "大" },
+        { "small", "小" },
+        { "narrow", "細" },
+        { "wide", "広" },
+        { "open", "開く" },
+        { "close", "閉じる" },
+        { "squash", "つぶれ" },
+        
+        // === 回転・変形 ===
+        { "rotating", "回転" },
+        { "inward", "内側" },
+        { "outward", "外側" },
+        { "sori", "反り" },
+        { "yori", "寄り" },
+        { "morph", "変形" },
+        
+        // === 特殊効果 ===
+        { "off", "OFF" },
+        { "double", "二重" },
+        { "preset", "プリセット" },
+        { "point", "先端" },
+        { "line", "ライン" },
+        { "shape", "形状" },
+        
+        // === VRChat関連 ===
+        { "vrc", "VRC" },
+        { "lookingup", "上見" },
+        { "lookingdown", "下見" },
     };
 
     // タグのソート順（よく使うものを前に）
     private static readonly List<string> tagOrder = new List<string>
     {
-        "目", "口", "眉", "瞳", "瞼", "睫毛", "舌", "歯", "八重歯",
-        "頬", "鼻", "唇", "涙", "額",
-        "まばたき", "ウィンク", "ジト目", "タレ目", "ツリ目", "なごみ", "眠い", "ハイライト",
-        "笑顔", "喜び", "怒り", "悲しみ", "泣き", "驚き"
+        // 顔パーツ
+        "目", "口", "眉", "虹彩", "瞳孔", "瞼", "睫毛", "舌", "歯", "八重歯",
+        "頬", "鼻", "唇", "涙", "額", "耳", "顔", "顔型", "顎", "輪郭", "マズル", "頭", "首",
+        // 目の形状
+        "まばたき", "ウィンク", "ジト目", "タレ目", "ツリ目", "なごみ", "ドヤ顔", "眠い", 
+        "ハイライト", "うるうる", "キラキラ", "ヤンデレ",
+        // 眉の形状
+        "まろ眉", "困り眉", "イライラ", "ストレート",
+        // 口の形状
+        "ギザ歯", "よだれ", "ペロ", "ぷくー", "ニヤリ",
+        // 顔の形状
+        "ぽっちゃり", "丸", "シャープ", "ソフト", "ボーイッシュ", "長い", "短い", "膨らみ",
+        // 表情
+        "笑顔", "喜び", "怒り", "悲しみ", "泣き", "驚き", "恐怖",
+        // その他効果
+        "赤面", "線照れ", "汗", "ハート", "星", "白目", "青ざめ",
+        // 動物
+        "猫", "犬", "狐", "うさぎ", "たぬき", "ナマケモノ", "山羊", "エルフ",
+        // 位置
+        "上", "下", "左", "右", "前", "後", "中央", "メイン", "サブ",
+        // サイズ・形状
+        "大", "小", "細", "広", "太い", "細い", "開く", "閉じる", "つぶれ",
+        // 回転・変形
+        "回転", "内側", "外側", "反り", "寄り", "変形",
+        // 特殊
+        "OFF", "二重", "プリセット", "先端", "ライン", "形状",
+        // VRC
+        "VRC", "上見", "下見"
     };
 
     static BlendShapeSearchTool()
@@ -280,17 +498,27 @@ public class BlendShapeSearchTool : EditorWindow
     private void OnGUI()
     {
         EditorGUILayout.Space(5);
-        
-        EditorGUILayout.LabelField("BlendShape Search Tool", EditorStyles.boldLabel);
-        EditorGUILayout.Space(3);
 
-        EditorGUI.BeginDisabledGroup(true);
-        EditorGUILayout.ObjectField("Target", targetRenderer, typeof(SkinnedMeshRenderer), true);
-        EditorGUI.EndDisabledGroup();
-
-        if (targetRenderer == null || targetRenderer.sharedMesh == null)
+        // ターゲット表示
+        EditorGUI.BeginChangeCheck();
+        var newTarget = (SkinnedMeshRenderer)EditorGUILayout.ObjectField(
+            "Target", targetRenderer, typeof(SkinnedMeshRenderer), true);
+        if (EditorGUI.EndChangeCheck() && newTarget != targetRenderer)
         {
-            EditorGUILayout.HelpBox("SkinnedMeshRendererを持つオブジェクトを選択してください", MessageType.Info);
+            targetRenderer = newTarget;
+            CacheBlendShapeValues();
+            lastQuery = null;
+        }
+
+        if (targetRenderer == null)
+        {
+            EditorGUILayout.HelpBox("SkinnedMeshRendererを選択してください", MessageType.Info);
+            return;
+        }
+
+        if (targetRenderer.sharedMesh == null)
+        {
+            EditorGUILayout.HelpBox("メッシュがありません", MessageType.Warning);
             return;
         }
 
@@ -298,14 +526,14 @@ public class BlendShapeSearchTool : EditorWindow
 
         // 検索ボックス
         EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("🔍", GUILayout.Width(20));
+        EditorGUILayout.LabelField("検索", GUILayout.Width(40));
         EditorGUI.BeginChangeCheck();
         searchQuery = EditorGUILayout.TextField(searchQuery);
         if (EditorGUI.EndChangeCheck())
         {
             lastQuery = null;
         }
-        if (GUILayout.Button("✕", GUILayout.Width(25)))
+        if (GUILayout.Button("×", GUILayout.Width(25)))
         {
             searchQuery = "";
             lastQuery = null;
@@ -313,130 +541,85 @@ public class BlendShapeSearchTool : EditorWindow
         }
         EditorGUILayout.EndHorizontal();
 
-        EditorGUILayout.HelpBox(
-            "検索例:\n" +
-            "・じと → 「zito」「ジト」もヒット\n" +
-            "・目 -blink → 「eye」含む、まばたき除外\n" +
-            "・smile 笑 → どちらかを含む",
-            MessageType.None);
+        // ヒント
+        EditorGUILayout.LabelField("例: 目, eye, smile, -blink（除外）", EditorStyles.miniLabel);
 
-        EditorGUILayout.Space(3);
+        EditorGUILayout.Space(5);
 
-        // 検索実行（タグ一覧も更新される）
+        // フィルタ更新
         UpdateFilteredBlendShapes();
 
         // ★ ヒットしたタグ一覧を表示 ★
-        DrawHitTagButtons();
+        if (hitTags.Count > 0)
+        {
+            EditorGUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("タグ:", GUILayout.Width(35));
+            
+            // tagOrderに従ってソート
+            var sortedTags = hitTags.Keys
+                .OrderBy(t => {
+                    int idx = tagOrder.IndexOf(t);
+                    return idx >= 0 ? idx : int.MaxValue;
+                })
+                .ToList();
+            
+            var tagButtonStyle = new GUIStyle(EditorStyles.miniButton)
+            {
+                fontSize = 10,
+                padding = new RectOffset(4, 4, 2, 2)
+            };
+            
+            foreach (var tag in sortedTags)
+            {
+                string buttonLabel = $"{tag}({hitTags[tag]})";
+                if (GUILayout.Button(buttonLabel, tagButtonStyle, GUILayout.ExpandWidth(false)))
+                {
+                    OnTagClicked(tag);
+                }
+            }
+            
+            GUILayout.FlexibleSpace();
+            EditorGUILayout.EndHorizontal();
+            
+            EditorGUILayout.Space(3);
+        }
 
-        EditorGUILayout.Space(3);
-
+        // 結果カウント
         int totalCount = targetRenderer.sharedMesh.blendShapeCount;
-        EditorGUILayout.LabelField($"表示: {filteredBlendShapes.Count} / {totalCount}", EditorStyles.miniLabel);
+        EditorGUILayout.LabelField($"表示: {filteredBlendShapes.Count} / {totalCount}", EditorStyles.boldLabel);
 
-        EditorGUILayout.Space(3);
-
+        // 一括操作
         EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("表示中を全て 0"))
+        if (GUILayout.Button("すべて0"))
         {
             SetAllFilteredValues(0f);
         }
-        if (GUILayout.Button("表示中を全て 100"))
+        if (GUILayout.Button("すべて100"))
         {
             SetAllFilteredValues(100f);
-        }
-        if (GUILayout.Button("値をリセット"))
-        {
-            CacheBlendShapeValues();
-            Repaint();
         }
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space(5);
 
+        // BlendShapeリスト
         scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
         
         foreach (var (index, name, tags) in filteredBlendShapes)
         {
             DrawBlendShapeSlider(index, name, tags);
         }
-
-        EditorGUILayout.EndScrollView();
-    }
-
-    /// <summary>
-    /// ヒットしたタグをボタンとして表示し、クリックで絞り込み
-    /// </summary>
-    private void DrawHitTagButtons()
-    {
-        if (hitTags.Count == 0) return;
-
-        EditorGUILayout.Space(3);
         
-        // タグをソート順に並べる
-        var sortedTags = hitTags
-            .OrderBy(kvp => {
-                int idx = tagOrder.IndexOf(kvp.Key);
-                return idx >= 0 ? idx : 999;
-            })
-            .ThenBy(kvp => kvp.Key)
-            .ToList();
-
-        // ラベル
-        EditorGUILayout.BeginHorizontal();
-        var labelStyle = new GUIStyle(EditorStyles.miniLabel)
-        {
-            normal = { textColor = Color.gray }
-        };
-        EditorGUILayout.LabelField("タグで絞込:", labelStyle, GUILayout.Width(65));
-
-        // タグボタンを横並びで表示（Wrap対応）
-        float availableWidth = EditorGUIUtility.currentViewWidth - 80;
-        float currentLineWidth = 0;
-        bool firstInLine = true;
-
-        var tagButtonStyle = new GUIStyle(EditorStyles.miniButton)
-        {
-            normal = { textColor = new Color(0.2f, 0.5f, 0.8f) },
-            hover = { textColor = new Color(0.3f, 0.6f, 0.9f) },
-            padding = new RectOffset(6, 6, 2, 2),
-            margin = new RectOffset(2, 2, 0, 0)
-        };
-
-        foreach (var kvp in sortedTags)
-        {
-            string tagText = $"{kvp.Key} ({kvp.Value})";
-            float buttonWidth = tagButtonStyle.CalcSize(new GUIContent(tagText)).x + 8;
-
-            // 行の幅を超えたら改行
-            if (!firstInLine && currentLineWidth + buttonWidth > availableWidth)
-            {
-                EditorGUILayout.EndHorizontal();
-                EditorGUILayout.BeginHorizontal();
-                GUILayout.Space(65); // ラベル分のスペース
-                currentLineWidth = 0;
-                firstInLine = true;
-            }
-
-            if (GUILayout.Button(tagText, tagButtonStyle, GUILayout.Width(buttonWidth)))
-            {
-                // タグをクリックしたら検索クエリに追加
-                OnTagClicked(kvp.Key);
-            }
-
-            currentLineWidth += buttonWidth;
-            firstInLine = false;
-        }
-
-        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.EndScrollView();
     }
 
     /// <summary>
     /// タグがクリックされたときの処理
     /// </summary>
-    private void OnTagClicked(string tag)
+    private void OnTagClicked(string clickedTag)
     {
-        // タグに対応する検索キーワードを取得
-        string searchTerm = GetSearchTermForTag(tag);
+        // 日本語タグからキーワードを取得
+        string searchTerm = GetSearchTermForTag(clickedTag);
         
         // 既存のクエリに追加するか、置き換えるか
         if (string.IsNullOrWhiteSpace(searchQuery))
