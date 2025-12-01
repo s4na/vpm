@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>s4na VPM Repository</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      min-height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .subtitle {
+      color: #8892b0;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .add-button {
+      display: block;
+      background: linear-gradient(135deg, #00d9ff 0%, #0077ff 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 20px 40px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0, 217, 255, 0.3);
+      margin-bottom: 20px;
+    }
+    .add-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 217, 255, 0.4);
+    }
+    .manual-url {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 40px;
+    }
+    .manual-url p {
+      color: #8892b0;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+    .url-box {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 6px;
+      padding: 12px 15px;
+      font-family: monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+      color: #64ffda;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .url-box:hover {
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .packages {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 25px;
+    }
+    .packages h2 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: #ccd6f6;
+    }
+    .package-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .package-card:last-child {
+      margin-bottom: 0;
+    }
+    .package-name {
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #64ffda;
+      margin-bottom: 5px;
+    }
+    .package-id {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: #8892b0;
+      margin-bottom: 10px;
+    }
+    .package-desc {
+      color: #a8b2d1;
+      font-size: 0.95rem;
+    }
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: #8892b0;
+      font-size: 0.85rem;
+    }
+    .footer a {
+      color: #64ffda;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .copied {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #64ffda;
+      color: #1a1a2e;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .copied.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>s4na VPM</h1>
+    <p class="subtitle">VRChat Creator Companion 用パッケージリポジトリ</p>
+
+    <a href="vcc://vpm/addRepo?url=https%3A%2F%2Fs4na.github.io%2Fvpm%2Findex.json" class="add-button">
+      VCC に追加する
+    </a>
+
+    <div class="manual-url">
+      <p>または、以下のURLをVCCに手動で追加:</p>
+      <div class="url-box" onclick="copyUrl()">
+        https://s4na.github.io/vpm/index.json
+      </div>
+    </div>
+
+    <div class="packages">
+      <h2>Packages</h2>
+      <div class="package-card">
+        <div class="package-name">s4na Utils</div>
+        <div class="package-id">com.s4na.utils</div>
+        <div class="package-desc">Utility scripts collection for VRChat projects</div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <a href="https://github.com/s4na/vpm" target="_blank">GitHub</a>
+    </div>
+  </div>
+
+  <div class="copied" id="copied">Copied!</div>
+
+  <script>
+    function copyUrl() {
+      navigator.clipboard.writeText('https://s4na.github.io/vpm/index.json');
+      const copied = document.getElementById('copied');
+      copied.classList.add('show');
+      setTimeout(() => copied.classList.remove('show'), 2000);
+    }
+  </script>
+</body>
+</html>
