@@ -3,6 +3,8 @@
 このドキュメントは [Keep a Changelog](https://keepachangelog.com/ja/1.0.0/) に準拠しています。
 バージョニングは [Semantic Versioning](https://semver.org/lang/ja/) に従います。
 
+## [Unreleased]
+
 ## [0.1.5] - 2025-12-01
 
 ### Fixed
@@ -16,12 +18,12 @@
 ## [0.1.3] - 2025-12-01
 
 ### Fixed
-- BlendShapeSearchTool.cs のリファクタリングと修正
+- BlendShapeSearchTool.cs のリファクタリングと修正 (直接コミット)
 
 ## [0.1.2] - 2025-12-01
 
 ### Changed
-- BlendShapeSearchTool.cs の更新
+- BlendShapeSearchTool.cs の更新 (直接コミット)
 
 ## [0.1.1] - 2025-12-01
 
