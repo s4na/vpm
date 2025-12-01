@@ -598,6 +598,11 @@ public class BlendShapeSearchTool : EditorWindow
         {
             SetAllFilteredValues(100f);
         }
+        if (GUILayout.Button("値をリセット"))
+        {
+            CacheBlendShapeValues();
+            Repaint();
+        }
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space(5);
