@@ -10,7 +10,6 @@ on:
 permissions:
   contents: write
   pull-requests: read
-  id-token: write
 
 jobs:
   bump-version:
@@ -65,20 +64,19 @@ jobs:
           prompt: |
             VERSION_HISTORIES.md を更新してください。
 
-            新バージョン: ${{ steps.bump_version.outputs.new_version }}
-            マージされたPR番号: ${{ github.event.pull_request.number }}
-            PRタイトル: ${{ github.event.pull_request.title }}
-            PR本文:
-            ${{ github.event.pull_request.body }}
+            - 新バージョン: ${{ steps.bump_version.outputs.new_version }}
+            - マージされたPR: #${{ github.event.pull_request.number }}
+            - PRタイトル: ${{ github.event.pull_request.title }}
+            - PR本文: ${{ github.event.pull_request.body }}
 
-            以下の手順で更新してください:
-            1. Packages/com.s4na.utils/VERSION_HISTORIES.md を読む
-            2. PRの内容を分析して、適切なカテゴリ（Added/Changed/Fixed/Removed）を判断
-            3. 新バージョンのエントリを「## [Unreleased]」の直後に追加
-            4. フォーマット: ## [${{ steps.bump_version.outputs.new_version }}] - YYYY-MM-DD (今日の日付)
-            5. PRへのリンクを含める: ([#番号](https://github.com/s4na/vpm/pull/番号))
-            6. 変更内容は日本語で簡潔に記述
-            7. ファイルを保存（コミットはしない）
+            Packages/com.s4na.utils/VERSION_HISTORIES.md の「## [Unreleased]」直後に、
+            新バージョンのエントリを追加してください。
+
+            フォーマット:
+            - ## [${{ steps.bump_version.outputs.new_version }}] - YYYY-MM-DD (今日の日付)
+            - PRの内容を分析し、適切なカテゴリ(Added/Changed/Fixed/Removed)に分類
+            - 変更内容は日本語で簡潔に記述
+            - PRリンクを含める: ([#番号](https://github.com/s4na/vpm/pull/番号))
 
             Keep a Changelog フォーマットに従ってください。
           claude_args: '--allowed-tools "Read,Edit,Write,Bash(date:*)"'
@@ -93,10 +91,8 @@ jobs:
           # Always add package.json
           git add Packages/com.s4na.utils/package.json
 
-          # Add VERSION_HISTORIES.md only if it was modified
-          if git diff --name-only | grep -q "VERSION_HISTORIES.md"; then
-            git add Packages/com.s4na.utils/VERSION_HISTORIES.md
-          fi
+          # Add VERSION_HISTORIES.md if it exists (no-op if unchanged)
+          git add Packages/com.s4na.utils/VERSION_HISTORIES.md 2>/dev/null || true
 
           git commit -m "chore: bump com.s4na.utils to v${{ steps.bump_version.outputs.new_version }} [skip ci]"
           git push
