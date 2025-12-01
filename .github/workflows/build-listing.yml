@@ -1,0 +1,94 @@
+name: Build VPM Listing
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build VPM Listing
+        run: |
+          mkdir -p _site
+
+          # Copy source.json
+          cp source.json _site/
+
+          # Create packages directory
+          mkdir -p _site/packages
+
+          # Initialize index.json
+          cat > _site/index.json << 'INDEXEOF'
+          {
+            "name": "s4na VPM Repository",
+            "id": "com.s4na.vpm",
+            "url": "https://s4na.github.io/vpm/index.json",
+            "author": "s4na",
+            "packages": {}
+          }
+          INDEXEOF
+
+          # Process each package
+          for pkg_dir in Packages/*/; do
+            if [ -f "${pkg_dir}package.json" ]; then
+              pkg_name=$(jq -r '.name' "${pkg_dir}package.json")
+              pkg_version=$(jq -r '.version' "${pkg_dir}package.json")
+
+              echo "Processing $pkg_name@$pkg_version"
+
+              # Create zip
+              mkdir -p "_site/packages/${pkg_name}"
+              cd "$pkg_dir"
+              zip -r "../../_site/packages/${pkg_name}/${pkg_name}-${pkg_version}.zip" . -x "*.meta"
+              cd ../..
+
+              # Read package.json and add url
+              pkg_json=$(cat "${pkg_dir}package.json")
+              pkg_json=$(echo "$pkg_json" | jq --arg url "https://s4na.github.io/vpm/packages/${pkg_name}/${pkg_name}-${pkg_version}.zip" '. + {url: $url}')
+
+              # Update index.json
+              index_json=$(cat _site/index.json)
+              index_json=$(echo "$index_json" | jq --arg name "$pkg_name" --arg version "$pkg_version" --argjson pkg "$pkg_json" '.packages[$name].versions[$version] = $pkg')
+              echo "$index_json" > _site/index.json
+            fi
+          done
+
+          # Pretty print index.json
+          jq '.' _site/index.json > _site/index.json.tmp && mv _site/index.json.tmp _site/index.json
+
+          echo "Build complete!"
+          cat _site/index.json
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '_site'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

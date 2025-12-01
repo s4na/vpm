@@ -1,0 +1,17 @@
+{
+  "name": "com.s4na.utils",
+  "displayName": "s4na Utils",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "Utility scripts collection for VRChat projects",
+  "author": {
+    "name": "s4na",
+    "url": "https://github.com/s4na"
+  },
+  "url": "https://github.com/s4na/vpm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4na/vpm.git"
+  },
+  "vpmDependencies": {}
+}
