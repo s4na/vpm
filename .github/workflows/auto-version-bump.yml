@@ -1,0 +1,50 @@
+name: Auto Version Bump
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+    paths:
+      - 'Packages/com.s4na.utils/**'
+
+permissions:
+  contents: write
+
+jobs:
+  bump-version:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Bump patch version for com.s4na.utils
+        run: |
+          PACKAGE_JSON="Packages/com.s4na.utils/package.json"
+
+          # Get current version
+          CURRENT_VERSION=$(jq -r '.version' "$PACKAGE_JSON")
+          echo "Current version: $CURRENT_VERSION"
+
+          # Split version into parts
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$CURRENT_VERSION"
+
+          # Increment patch version
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="${MAJOR}.${MINOR}.${NEW_PATCH}"
+          echo "New version: $NEW_VERSION"
+
+          # Update package.json
+          jq --arg version "$NEW_VERSION" '.version = $version' "$PACKAGE_JSON" > tmp.json && mv tmp.json "$PACKAGE_JSON"
+
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Packages/com.s4na.utils/package.json
+          git commit -m "chore: bump com.s4na.utils to v${{ env.NEW_VERSION }}"
+          git push
