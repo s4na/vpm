@@ -1,0 +1,11 @@
+{
+  "name": "s4na VPM Repository",
+  "id": "com.s4na.vpm",
+  "url": "https://s4na.github.io/vpm/index.json",
+  "author": "s4na",
+  "description": "s4na's VRChat packages repository",
+  "infoLink": {
+    "text": "GitHub",
+    "url": "https://github.com/s4na/vpm"
+  }
+}

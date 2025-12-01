@@ -1,0 +1,18 @@
+{
+  "name": "com.s4na.utils.editor",
+  "rootNamespace": "S4na.Utils.Editor",
+  "references": [
+    "com.s4na.utils"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}
