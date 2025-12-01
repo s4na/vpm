@@ -9,6 +9,8 @@ on:
 
 permissions:
   contents: write
+  pull-requests: read
+  id-token: write
 
 jobs:
   bump-version:
@@ -52,12 +54,37 @@ jobs:
 
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
 
+      - name: Update VERSION_HISTORIES.md with Claude Code
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            VERSION_HISTORIES.md を更新してください。
+
+            新バージョン: ${{ env.NEW_VERSION }}
+            マージされたPR番号: ${{ github.event.pull_request.number }}
+            PRタイトル: ${{ github.event.pull_request.title }}
+            PR本文:
+            ${{ github.event.pull_request.body }}
+
+            以下の手順で更新してください:
+            1. Packages/com.s4na.utils/VERSION_HISTORIES.md を読む
+            2. PRの内容を分析して、適切なカテゴリ（Added/Changed/Fixed/Removed）を判断
+            3. 新バージョンのエントリを「## [Unreleased]」の直後（なければ最初のバージョンの前）に追加
+            4. フォーマット: ## [${{ env.NEW_VERSION }}] - YYYY-MM-DD (今日の日付)
+            5. PRへのリンクを含める: ([#番号](https://github.com/s4na/vpm/pull/番号))
+            6. 変更内容は日本語で簡潔に記述
+            7. ファイルを保存（コミットはしない）
+
+            Keep a Changelog フォーマットに従ってください。
+          claude_args: '--allowed-tools "Read,Edit,Write,Bash(date:*)"'
+
       - name: Commit and push
         run: |
           set -e
 
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Packages/com.s4na.utils/package.json
+          git add Packages/com.s4na.utils/package.json Packages/com.s4na.utils/VERSION_HISTORIES.md
           git commit -m "chore: bump com.s4na.utils to v${{ env.NEW_VERSION }} [skip ci]"
           git push
