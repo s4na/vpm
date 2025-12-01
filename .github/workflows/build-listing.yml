@@ -32,6 +32,11 @@ jobs:
           # Copy source.json
           cp source.json _site/
 
+          # Copy website files
+          if [ -d "Website" ]; then
+            cp -r Website/* _site/
+          fi
+
           # Create packages directory
           mkdir -p _site/packages
 
