@@ -6,9 +6,7 @@ VRChat Creator Companion (VCC) 用パッケージリポジトリ
 
 以下のURLをVCCに追加してください:
 
-```
-https://s4na.github.io/vpm/index.json
-```
+<https://s4na.github.io/vpm/index.json>
 
 または以下のボタンから追加:
 
