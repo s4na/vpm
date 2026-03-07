@@ -1,0 +1,29 @@
+{
+  "name": "com.s4na.avatar-essentials",
+  "displayName": "s4na Avatar Essentials",
+  "version": "1.0.0",
+  "unity": "2022.3",
+  "description": "Meta-package that installs essential VRChat avatar tools: lilToon, Modular Avatar, lilycalInventory, FaceEmo, AAO, and more.",
+  "author": {
+    "name": "s4na",
+    "url": "https://github.com/s4na"
+  },
+  "url": "https://github.com/s4na/vpm",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/s4na/vpm.git"
+  },
+  "vpmDependencies": {
+    "jp.lilxyzw.liltoon": ">=0.0.0",
+    "nadena.dev.modular-avatar": ">=0.0.0",
+    "jp.lilxyzw.avatar-utils": ">=2.1.2",
+    "jp.lilxyzw.lilycalinventory": ">=1.5.2",
+    "jp.lilxyzw.editortoolbox": ">=1.11.0",
+    "com.github.kurotu.vrc-quest-tools": ">=2.11.5",
+    "jp.suzuryg.face-emo": ">=1.7.0",
+    "com.anatawa12.avatar-optimizer": ">=0.0.0",
+    "jp.unisakistudio.kawaiiposing": ">=0.0.0",
+    "io.github.azukimochi.light-limit-changer": ">=0.0.0",
+    "com.ramtype0.meshia.mesh-simplification": ">=0.0.0"
+  }
+}
