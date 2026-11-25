@@ -76,8 +76,20 @@ jobs:
             fi
           done
 
-          # Pretty print index.json
-          jq '.' _site/index.json > _site/index.json.tmp && mv _site/index.json.tmp _site/index.json
+          # Add third-party packages without repackaging their release ZIPs.
+          node <<'NODE'
+          const fs = require('node:fs');
+          const listingPath = '_site/index.json';
+          const listing = JSON.parse(fs.readFileSync(listingPath, 'utf8'));
+          const external = JSON.parse(fs.readFileSync('external-packages.json', 'utf8'));
+          for (const [name, pkg] of Object.entries(external)) {
+            if (Object.hasOwn(listing.packages, name)) {
+              throw new Error(`Duplicate VPM package: ${name}`);
+            }
+            listing.packages[name] = pkg;
+          }
+          fs.writeFileSync(listingPath, JSON.stringify(listing, null, 2) + '\n');
+          NODE
 
           echo "Build complete!"
           cat _site/index.json
