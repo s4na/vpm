@@ -17,6 +17,9 @@ VRChat Creator Companion (VCC) 用パッケージリポジトリ
 | Package | Description |
 |---------|-------------|
 | com.s4na.utils | Utility scripts collection |
+| com.takuho.tao | [TAO: Takuho's Avatar Optimizer](https://takuhotech.github.io/TakuhoAvatarOptimizer/vpm.html)（外部配布） |
+
+TAO は単体で追加できます。ZIP は公式リリースから取得し、このリポジトリでは再配布しません。解決に必要な SDK や NDMF が見つからない場合は、VCC にそれぞれの配布元を追加してください。
 
 ## Setup (for maintainers)
 
@@ -29,6 +32,8 @@ VRChat Creator Companion (VCC) 用パッケージリポジトリ
 2. `package.json` を追加（VPM形式）
 3. スクリプトを追加
 4. main に push
+
+外部パッケージを追加・更新する場合は、配布元の VPM JSON で確認したバージョン情報を `external-packages.json` に登録します。公式 ZIP の URL と `zipSHA256` は変更せず、リリースの情報と照合してください。
 
 ## License
 

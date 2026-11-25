@@ -1,0 +1,26 @@
+{
+  "com.takuho.tao": {
+    "versions": {
+      "0.1.0": {
+        "name": "com.takuho.tao",
+        "displayName": "TAO: Takuho's Avatar Optimizer",
+        "version": "0.1.0",
+        "unity": "2022.3",
+        "license": "MIT",
+        "description": "VRChatアバター向けの非破壊最適化ツール集。TAO Merge PhysBone By Constraint / TAO Optimize VRC Shader Fallback / TAO Reorder GameObject を含みます。",
+        "author": {
+          "name": "Takuho"
+        },
+        "url": "https://github.com/takuhoTech/TakuhoAvatarOptimizer/releases/download/v0.1.0/com.takuho.tao-0.1.0.zip",
+        "repo": "https://takuhotech.github.io/TakuhoAvatarOptimizer/vpm.json",
+        "documentationUrl": "https://github.com/takuhoTech/TakuhoAvatarOptimizer/blob/main/README.md",
+        "changelogUrl": "https://github.com/takuhoTech/TakuhoAvatarOptimizer/blob/main/CHANGELOG.md",
+        "vpmDependencies": {
+          "com.vrchat.avatars": ">=3.10.0",
+          "nadena.dev.ndmf": ">=1.8.0"
+        },
+        "zipSHA256": "e946ead6cddc8c51df33cca5891b5854c0e57aa4572a6f2a315c8843a4d1e75b"
+      }
+    }
+  }
+}
