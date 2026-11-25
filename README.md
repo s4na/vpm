@@ -17,9 +17,10 @@ VRChat Creator Companion (VCC) 用パッケージリポジトリ
 | Package | Description |
 |---------|-------------|
 | com.s4na.utils | Utility scripts collection |
+| com.s4na.avatar-essentials | VRChat アバター向けの定番ツールをまとめて導入 |
 | com.takuho.tao | [TAO: Takuho's Avatar Optimizer](https://takuhotech.github.io/TakuhoAvatarOptimizer/vpm.html)（外部配布） |
 
-TAO は単体で追加できます。ZIP は公式リリースから取得し、このリポジトリでは再配布しません。解決に必要な SDK や NDMF が見つからない場合は、VCC にそれぞれの配布元を追加してください。
+s4na Avatar Essentials 1.1.0 以降をインストールまたは更新すると、TAO も依存パッケージとしてインストールされます。TAO だけを追加することもできます。ZIP は公式リリースから取得し、このリポジトリでは再配布しません。解決に必要な SDK や NDMF が見つからない場合は、VCC にそれぞれの配布元を追加してください。
 
 ## Setup (for maintainers)
 
