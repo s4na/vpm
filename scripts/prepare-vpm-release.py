@@ -34,14 +34,28 @@ def bump_packages():
 
 
 def publish_commit(source):
+    if source and not re.fullmatch(r"[0-9a-f]{40}", source):
+        raise ValueError("Expected a main push commit SHA")
+
+    for attempt in range(5):
+        try:
+            return prepare(source)
+        except MainAdvanced:
+            if attempt == 4:
+                raise
+
+
+class MainAdvanced(Exception):
+    pass
+
+
+def prepare(source):
     tip = git("rev-parse", "HEAD")
     history = ("log", "--first-parent", "-1", "--format=%H")
     latest = git(*history, f"--grep=^{MARKER}[0-9a-f]{{40}}$", "--extended-regexp")
     if not source:
         return latest or tip
 
-    if not re.fullmatch(r"[0-9a-f]{40}", source):
-        raise ValueError("Expected a main push commit SHA")
     git("merge-base", "--is-ancestor", source, tip)
 
     if git(*history, f"--grep=^{MARKER}{source}$"):
@@ -53,8 +67,16 @@ def publish_commit(source):
     git("-c", "user.name=github-actions[bot]", "-c",
         "user.email=41898282+github-actions[bot]@users.noreply.github.com",
         "commit", "-m", "chore: bump VPM package patch versions", "-m", MARKER + source)
-    # A normal push rejects concurrent main changes; rerunning uses a fresh checkout.
-    git("push", "origin", "HEAD:refs/heads/main")
+    try:
+        git("push", "origin", "HEAD:refs/heads/main")
+    except subprocess.CalledProcessError as error:
+        git("fetch", "--no-tags", "origin", "refs/heads/main")
+        if git("rev-parse", "FETCH_HEAD") == tip:
+            raise error
+        # Another merge can update main while this job is preparing its commit.
+        # Restart from the new tip without overwriting remote history.
+        git("checkout", "--detach", "FETCH_HEAD")
+        raise MainAdvanced("main advanced during release preparation") from error
     return git("rev-parse", "HEAD")
 
 

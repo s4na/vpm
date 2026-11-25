@@ -33,7 +33,7 @@ jobs:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     permissions:
       contents: write
-    uses: ./.github/workflows/auto-version-bump.yml
+    uses: $/.github/workflows/auto-version-bump.yml
     with:
       source: ${{ github.event_name == 'push' && github.sha || '' }}
 

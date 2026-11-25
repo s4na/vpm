@@ -64,6 +64,19 @@ class ReleaseTest(unittest.TestCase):
         self.assertEqual(self.publish(), second)
         self.assertEqual(self.main_tip(), second)
 
+    def test_retries_when_another_merge_advances_main(self):
+        source = self.main_tip()
+        other = self.root.parent / "another-checkout"
+        self.git("clone", "--branch", "main", str(self.remote), str(other))
+        self.git("-C", str(other), "-c", "user.name=Release Test", "-c",
+                 "user.email=test@example.invalid", "commit", "--allow-empty", "-m", "Concurrent merge")
+        self.git("-C", str(other), "push", "origin", "main")
+        concurrent = self.main_tip()
+        released = self.publish("--source", source)
+        self.assertEqual(self.git("rev-parse", f"{released}^"), concurrent)
+        self.assertEqual(self.main_tip(), released)
+        self.assertEqual(self.version(released, "com.s4na.utils"), "0.1.7")
+
     def test_invalid_version_leaves_remote_unchanged(self):
         path = self.root / "Packages/com.s4na.utils/package.json"
         path.write_text('{"name":"com.s4na.utils","version":"broken"}', encoding="utf-8")
