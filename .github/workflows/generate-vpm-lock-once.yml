@@ -1,0 +1,37 @@
+name: Temporary VPM lock generation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/generate-vpm-lock-once.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    if: github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'ci/zizmor-audit'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Generate final lock in temporary copy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          bin="$RUNNER_TEMP/gh-actions-lock"
+          curl -fLsS 'https://github.com/github/gh-actions-lock/releases/download/v0.5.1/linux-amd64' --output "$bin"
+          echo "94009f287cfcc046ff371824824c203a8a44c981ca2dac344052744897c29c3a  $bin" | sha256sum -c
+          chmod +x "$bin"
+          copy=$(mktemp -d)
+          cp -a . "$copy"
+          cd "$copy"
+          rm .github/workflows/generate-vpm-lock-once.yml
+          "$bin" --no-interactive --json=valid
+          "$bin" --verify-local --json=valid
+          printf '\nBEGIN_GENERATED_ACTIONS_LOCK\n'
+          cat .github/workflows/actions.lock
+          printf '\nEND_GENERATED_ACTIONS_LOCK\n'
