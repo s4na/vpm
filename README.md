@@ -25,14 +25,15 @@ s4na Avatar Essentials 1.1.0 以降をインストールまたは更新すると
 ## Setup (for maintainers)
 
 1. GitHub Pages を有効化: Settings > Pages > Source を "GitHub Actions" に設定
-2. main ブランチに push すると自動的にパッケージリストがビルドされます
+2. PR を main にマージすると、`Packages/` 内の自作パッケージ（`com.s4na.*`）のパッチ番号が上がり、そのコミットから ZIP と一覧を生成して GitHub Pages に公開します。main への直接 push も同じ扱いです。
+3. 外部パッケージのバージョンは変更しません。公開に失敗した場合は同じ Actions 実行を再実行してください。すでに行った採番は繰り返しません。手動実行では新しい採番は行わず、直近の採番済みコミット（初回は main）を再公開します。
 
 ## Adding a New Package
 
 1. `Packages/com.your.package/` ディレクトリを作成
 2. `package.json` を追加（VPM形式）
 3. スクリプトを追加
-4. main に push
+4. PR を main にマージ
 
 外部パッケージを追加・更新する場合は、配布元の VPM JSON で確認したバージョン情報を `external-packages.json` に登録します。公式 ZIP の URL と `zipSHA256` は変更せず、リリースの情報と照合してください。
 
